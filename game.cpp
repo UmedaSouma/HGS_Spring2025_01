@@ -14,6 +14,7 @@
 #include"block_ally.h"
 #include"clear.h"
 #include"GameOver.h"
+#include"goal.h"
 //==========================
 // コンストラクタ
 //==========================
@@ -81,6 +82,11 @@ void CGame::Update()
 	else if (!CManager::GetInstance()->GetGameManager()->GetGame())
 	{//クリアしていない
 		COver::Create({ 640.0f, 300.0f, 0.0f });
+	}
+
+	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
+	{//ゲーム画面に遷移
+		CManager::GetInstance()->GetFade()->SetFade(TITLE);
 	}
 }
 
