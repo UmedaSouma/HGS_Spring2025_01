@@ -56,6 +56,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerposui.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="sample_billboard.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="objectX.h" />
     <ClInclude Include="Pch.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerposui.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="sample_billboard.h" />

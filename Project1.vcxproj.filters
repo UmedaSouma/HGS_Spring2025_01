@@ -195,6 +195,9 @@
     <ClCompile Include="game_test_01.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
+    <ClCompile Include="playerposui.cpp">
+      <Filter>ソース ファイル\gameobject\object3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="game_test_01.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="playerposui.h">
+      <Filter>ヘッダー ファイル\gameobject\object3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
