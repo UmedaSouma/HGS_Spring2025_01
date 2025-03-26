@@ -18,7 +18,8 @@ const int CWall::PRIORITY = 1;//描画順
 //==========================
 CWall::CWall(int nPriority) :
 	CObjectX(nPriority),//基底コンストラクタ
-	m_nModelIdx(0)//モデルの番号
+	m_nModelIdx(0),//モデルの番号
+	m_ball(nullptr)
 {
 
 }
@@ -36,8 +37,11 @@ CWall::~CWall()
 //==========================
 HRESULT CWall::Init()
 {
+	//ボールの情報を取得
+	GetBallInfo();
+
 	//サイズ設定
-	//SetSize();
+	SetSize();
 
 	//初期設定
 	CObjectX::Init();
@@ -50,6 +54,11 @@ HRESULT CWall::Init()
 //==========================
 void  CWall::Uninit()
 {
+	if (m_ball != nullptr)
+	{
+		m_ball = nullptr;
+	}
+
 	//終了処理
 	CObjectX::Uninit();
 
@@ -63,6 +72,8 @@ void CWall::Update()
 {
 	//更新処理
 	CObjectX::Update();
+
+	Hit();
 }
 
 //==========================
@@ -100,4 +111,85 @@ CWall* CWall::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	pWall->Init();
 
 	return pWall;
+}
+
+//==========================
+//当たり判定
+//==========================
+void CWall::Hit()
+{
+	//当たり判定の情報を取得
+	CCollision* pCollision = CManager::GetInstance()->GetCollision();
+
+	//左側の判定
+	bool collision = pCollision->RectangleLeft(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//右側の判定
+	collision = pCollision->RectangleRight(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//上の判定
+	collision = pCollision->RectangleFront(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//下の判定
+	collision = pCollision->RectangletBack(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+}
+
+//==========================
+//ボールの情報を取得
+//==========================
+void CWall::GetBallInfo()
+{
+	//オブジェクトを取得
+	CObject* pObj = CObject::GetObj(nullptr, CBall::PRIORITY);
+
+	while (pObj != nullptr)
+	{
+		if (pObj == nullptr)
+		{//オブジェクトがない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//種類の取得
+		CObject::TYPE type = pObj->GetType();
+
+		if (type != CObject::TYPE::BALL)
+		{//オブジェクトが敵ではない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//ボールの情報を取得
+		m_ball = dynamic_cast<CBall*>(pObj);
+
+		break;
+	}
 }

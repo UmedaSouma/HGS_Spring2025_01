@@ -10,6 +10,8 @@
 #include"manager.h"
 #include"block.h"
 #include "wall.h"
+#include"ball.h"
+
 //==========================
 // コンストラクタ
 //==========================
@@ -36,6 +38,8 @@ HRESULT CGame::Init()
 	float VarticalScale = 17.0f;
 
 	CBlock::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
+
+	CBall::Create({ 0.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
 	{// 壁配置
 		CWall::Create({ -SideOrigin,-UnderOrigin,0.0f }, { 1.0f,VarticalScale,1.0f });	// 左壁

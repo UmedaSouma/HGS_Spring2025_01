@@ -61,10 +61,10 @@ bool CCollision::RectangleLeft(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTOR
 //==========================
 bool CCollision::RectangleRight(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTOR3 partnerpos, D3DXVECTOR3 myvtxmax, D3DXVECTOR3 myvtxmin, D3DXVECTOR3  partnervtxmax, D3DXVECTOR3  partnervtxmin)
 {
-	if (posold.x - myvtxmax.x >= partnerpos.x + partnervtxmax.x
-		&& mypos.x - myvtxmax.x < partnerpos.x + partnervtxmax.x
-		&& mypos.z - myvtxmin.z < partnerpos.z + partnervtxmax.z
-		&& mypos.z + myvtxmax.z > partnerpos.z + partnervtxmin.z)
+	if (posold.x + myvtxmin.x >= partnerpos.x + partnervtxmax.x
+		&& mypos.x + myvtxmin.x < partnerpos.x + partnervtxmax.x
+		&& mypos.y + myvtxmin.y < partnerpos.y + partnervtxmax.y
+		&& mypos.y + myvtxmax.y > partnerpos.y + partnervtxmin.y)
 	{//‰E
 		return true;
 	}
@@ -78,9 +78,9 @@ bool CCollision::RectangleRight(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTO
 bool CCollision::RectangletBack(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTOR3 partnerpos, D3DXVECTOR3 myvtxmax, D3DXVECTOR3 myvtxmin, D3DXVECTOR3  partnervtxmax, D3DXVECTOR3  partnervtxmin)
 {
 
-	if (posold.z - myvtxmin.z >= partnerpos.z + partnervtxmax.z
-		&& mypos.z - myvtxmin.z < partnerpos.z + partnervtxmax.z
-		&& mypos.x - myvtxmin.x < partnerpos.x + partnervtxmax.x
+	if (posold.y + myvtxmin.y >= partnerpos.y + partnervtxmax.y
+		&& mypos.y + myvtxmin.y < partnerpos.y + partnervtxmax.y
+		&& mypos.x + myvtxmin.x < partnerpos.x + partnervtxmax.x
 		&& mypos.x + myvtxmax.x > partnerpos.x + partnervtxmin.x)
 	{//‰œ
 		return true;
@@ -94,9 +94,9 @@ bool CCollision::RectangletBack(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTO
 //==========================
 bool CCollision::RectangleFront(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTOR3 partnerpos, D3DXVECTOR3 myvtxmax, D3DXVECTOR3 myvtxmin, D3DXVECTOR3  partnervtxmax, D3DXVECTOR3  partnervtxmin)
 {
-	if (posold.z + myvtxmax.z <= partnerpos.z + partnervtxmin.z
-		&& mypos.z + myvtxmax.z > partnerpos.z + partnervtxmin.z
-		&& mypos.x - myvtxmin.x < partnerpos.x + partnervtxmax.x
+	if (posold.y + myvtxmax.y <= partnerpos.y + partnervtxmin.y
+		&& mypos.y + myvtxmax.y > partnerpos.y + partnervtxmin.y
+		&& mypos.x + myvtxmin.x < partnerpos.x + partnervtxmax.x
 		&& mypos.x + myvtxmax.x > partnerpos.x + partnervtxmin.x)
 	{//Žè‘O
 		return true;

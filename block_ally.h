@@ -30,7 +30,7 @@ public:
 	static CBlockAlly* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
 private:
 
-	void GetBallInfo();
+	void GetBallInfo();//ボールの情報を取得
 
 	int m_nModelIdx;//モデルの番号
 	CBall* m_ball;//ボールの情報

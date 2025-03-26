@@ -72,6 +72,7 @@ void CBlockAlly::Update()
 	//XVˆ—
 	CObjectX::Update();
 
+	//“–‚½‚è”»’è
 	Hit();
 }
 

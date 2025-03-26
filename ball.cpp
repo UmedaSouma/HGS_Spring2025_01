@@ -40,7 +40,7 @@ HRESULT CBall::Init()
 	//‰Šúİ’è
 	CObjectX::Init();
 	
-	SetMove({ 1.0f,0.0f,0.0f });
+	SetMove({ 1.0f,1.0f,0.0f });
 
 	return S_OK;
 }
