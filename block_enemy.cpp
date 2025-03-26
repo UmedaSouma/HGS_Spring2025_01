@@ -101,7 +101,7 @@ CBlockEnemy* CBlockEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//ƒ‚ƒfƒ‹‚Ì¶¬
 	CModel* pModel = CManager::GetInstance()->GetModel();
-	pBlockEnemy->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
+	pBlockEnemy->m_nModelIdx = pModel->Regist("data\\MODEL\\enemyblock.x");
 	pBlockEnemy->BindModel(pModel->GetMeshAdress(pBlockEnemy->m_nModelIdx),
 		pModel->GetBuffMatAdress(pBlockEnemy->m_nModelIdx),
 		pModel->GetNumMatAdress(pBlockEnemy->m_nModelIdx),
