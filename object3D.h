@@ -28,6 +28,7 @@ public:
 	void BindTexture(LPDIRECT3DTEXTURE9 pTex);//テクスチャ割り当て
 	void SetSize(D3DXVECTOR3 size);//大きさ設定
 	D3DXVECTOR3& GetSize();//大きさ取得
+	void SetCol(D3DXCOLOR col);//色の設定
 private:
 
 	//メンバ変数
@@ -35,6 +36,7 @@ private:
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;//頂点バッファへのポインタ
 	D3DXVECTOR3 m_size;//大きさ
 	D3DXMATRIX m_mtxWorld;//ワールドマトリックス
+	D3DXCOLOR m_col;//色
 };
 
 #endif 

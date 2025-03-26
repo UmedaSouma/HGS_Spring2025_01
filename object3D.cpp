@@ -21,6 +21,7 @@ CObject3D::CObject3D(int nPriority) :CObjectgame(nPriority)
 	m_pVtxBuff = nullptr;
 
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 //========================
@@ -51,12 +52,12 @@ HRESULT CObject3D::Init(void)
 
 	//頂点バッファをロックし、頂点情報へのポインタを取得
 	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
-	
+
 	//頂点座標の設定
-	pVtx[0].pos = D3DXVECTOR3(GetPos().x - m_size.x, GetPos().y - m_size.y, GetPos().z + m_size.z);
-	pVtx[1].pos = D3DXVECTOR3(GetPos().x + m_size.x, GetPos().y - m_size.y, GetPos().z + m_size.z);
-	pVtx[2].pos = D3DXVECTOR3(GetPos().x - m_size.x, GetPos().y + m_size.y, GetPos().z - m_size.z);
-	pVtx[3].pos = D3DXVECTOR3(GetPos().x + m_size.x, GetPos().y + m_size.y, GetPos().z - m_size.z);
+	pVtx[0].pos = D3DXVECTOR3(-m_size.x, -m_size.y, +m_size.z);
+	pVtx[1].pos = D3DXVECTOR3(+m_size.x, -m_size.y, +m_size.z);
+	pVtx[2].pos = D3DXVECTOR3(-m_size.x, +m_size.y, -m_size.z);
+	pVtx[3].pos = D3DXVECTOR3(+m_size.x, +m_size.y, -m_size.z);
 
 	//法線ベクトルの設定
 	pVtx[0].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
@@ -65,10 +66,10 @@ HRESULT CObject3D::Init(void)
 	pVtx[3].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 
 	//頂点カラーの設定
-	pVtx[0].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	pVtx[1].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	pVtx[2].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	pVtx[3].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	pVtx[0].col = m_col;
+	pVtx[1].col = m_col;
+	pVtx[2].col = m_col;
+	pVtx[3].col = m_col;
 
 	//テクスチャ座標の設定
 	pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
@@ -106,7 +107,30 @@ void CObject3D::Uninit(void)
 //========================
 void CObject3D::Update()
 {
+	if (m_pVtxBuff == nullptr)
+	{
+		return;
+	}
 
+	VERTEX_3D* pVtx; //頂点情報へのポインタ
+
+	//頂点バッファをロックし、頂点情報へのポインタを取得
+	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
+
+	//頂点座標の設定
+	pVtx[0].pos = D3DXVECTOR3(-m_size.x, -m_size.y, +m_size.z);
+	pVtx[1].pos = D3DXVECTOR3(+m_size.x, -m_size.y, +m_size.z);
+	pVtx[2].pos = D3DXVECTOR3(-m_size.x, +m_size.y, -m_size.z);
+	pVtx[3].pos = D3DXVECTOR3(+m_size.x, +m_size.y, -m_size.z);
+
+	//頂点カラーの設定
+	pVtx[0].col = m_col;
+	pVtx[1].col = m_col;
+	pVtx[2].col = m_col;
+	pVtx[3].col = m_col;
+
+	//頂点バッファをアンロックする
+	m_pVtxBuff->Unlock();
 }
 
 //========================
@@ -182,4 +206,12 @@ void CObject3D::SetSize(D3DXVECTOR3 size)
 D3DXVECTOR3& CObject3D::GetSize(void)
 {
 	return m_size;
+}
+
+//========================
+///色の設定
+//========================
+void CObject3D::SetCol(D3DXCOLOR col)
+{
+	m_col = col;
 }
