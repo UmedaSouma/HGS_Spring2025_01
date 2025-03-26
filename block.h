@@ -25,6 +25,7 @@ public:
 	void Uninit() override;//終了処理
 	void Update() override;//更新処理
 	void Draw() override;//描画処理
+	virtual void Hit() = 0;	// 当たった時
 	static CBlock* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
 private:
 	int m_nModelIdx;//テクスチャの番号

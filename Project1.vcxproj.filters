@@ -180,6 +180,9 @@
     <ClCompile Include="block_enemy.cpp">
       <Filter>ソース ファイル\gameobject\objectX</Filter>
     </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>ソース ファイル\gameobject\objectX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -285,6 +288,9 @@
       <Filter>ヘッダー ファイル\gameobject\objectX</Filter>
     </ClInclude>
     <ClInclude Include="block_enemy.h">
+      <Filter>ヘッダー ファイル\gameobject\objectX</Filter>
+    </ClInclude>
+    <ClInclude Include="wall.h">
       <Filter>ヘッダー ファイル\gameobject\objectX</Filter>
     </ClInclude>
   </ItemGroup>
