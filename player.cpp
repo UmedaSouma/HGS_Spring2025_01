@@ -13,7 +13,7 @@
 
 //
 CPlayerposUI* CPlayer::PUI = nullptr;
-
+const int CPlayer::PRIORITY = 0;
 //==========================
 //コンストラクタ
 //==========================
@@ -39,7 +39,7 @@ HRESULT CPlayer::Init()
 	//初期設定
 	CObjectgame::Init();
 
-	PUI = CPlayerposUI::Create({ 0.0f,0.0f,0.0f }, { 10.0f,10.0f,1.0f });
+	//PUI = CPlayerposUI::Create({ 0.0f,0.0f,0.0f }, { 10.0f,10.0f,1.0f });
 
 	return S_OK;
 }
@@ -51,12 +51,13 @@ void  CPlayer::Uninit()
 {
 	if (PUI != nullptr)
 	{
-		delete PUI;
 		PUI = nullptr;
 	}
 
 	//終了処理
 	CObjectgame::Uninit();
+
+	Release();
 }
 
 //==========================
@@ -67,7 +68,7 @@ void CPlayer::Update()
 	D3DXVECTOR3 pos = GetPos();
 	D3DXVECTOR3 move = GetMove();
 
-	PUI->SetPos({ pos.x,pos.y,-50.0f });
+	//PUI->SetPos({ pos.x,pos.y,-50.0f });
 
 	Operation();
 

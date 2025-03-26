@@ -14,6 +14,8 @@
 class CPlayer :public CObjectgame
 {
 public:
+	static const int PRIORITY;
+
 	//メンバ関数
 	CPlayer(int nPriority = PRIORITY);//コンストラクタ
 	~CPlayer() override;//デストラクタ

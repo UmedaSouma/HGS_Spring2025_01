@@ -47,6 +47,8 @@ void CPlayerposUI::Uninit()
 {
 	//I—¹ˆ—
 	CObject3D::Uninit();
+
+	Release();
 }
 
 //==========================

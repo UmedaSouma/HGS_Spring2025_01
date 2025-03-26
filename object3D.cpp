@@ -99,7 +99,6 @@ void CObject3D::Uninit(void)
 		m_pTexture = nullptr;
 	}
 
-	Release();
 }
 
 //========================

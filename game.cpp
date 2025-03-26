@@ -49,7 +49,7 @@ HRESULT CGame::Init()
 
 	CBall::Create({ -150.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
-	CBlockAlly::Create({ 0.0f,0.0f,0.0f }, { 5.0f,5.0f,5.0f });
+	//CBlockAlly::Create({ 0.0f,0.0f,0.0f }, { 5.0f,5.0f,5.0f });
 
 	if (m_pCreteBlock == nullptr)
 	{
