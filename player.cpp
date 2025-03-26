@@ -64,6 +64,11 @@ void CPlayer::Draw()
 	CObjectgame::Draw();
 }
 
+void CPlayer::Operation()
+{
+
+}
+
 //==========================
 //オブジェクト生成
 //==========================

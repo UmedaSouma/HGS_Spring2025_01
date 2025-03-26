@@ -25,6 +25,7 @@
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="block_ally.cpp" />
     <ClCompile Include="block_enemy.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="create_block.cpp" />
@@ -74,6 +75,7 @@
     <ClInclude Include="ball.h" />
     <ClInclude Include="block_ally.h" />
     <ClInclude Include="block_enemy.h" />
+    <ClInclude Include="bullet.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="create_block.h" />

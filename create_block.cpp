@@ -26,16 +26,20 @@ CCreateBlock::~CCreateBlock()
 //===========================================================================================================
 void CCreateBlock::Init()
 {
-	int MAX = 10;
+	int MAX_V = 10;
+	int MAX_H = 10;
 
 	srand((unsigned int)time(NULL)); // Œ»İ‚Ìî•ñ‚Å‰Šú‰»
 	
-	for (int i = 0; i < MAX; i++)
+	for (int i = 0; i < MAX_V; i++)
 	{
-		int r = rand() % MAX + 1;
-		D3DXVECTOR3 pos = { 100.0f + (r * 20),0.0f,0.0f };
-		D3DXVECTOR3 scale = { 1.0f,1.0f,1.0f };
-		CBlockEnemy::Create(pos, scale);
+		for (int o = 0; o < MAX_H; o++)
+		{
+			int r = rand() % MAX_V + 1;
+			D3DXVECTOR3 pos = { 0.0f + (i * 20),0.0f,0.0f };
+			D3DXVECTOR3 scale = { 1.0f,1.0f,1.0f };
+			CBlockEnemy::Create(pos, scale);
+		}
 	}
 }
 
