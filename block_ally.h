@@ -1,31 +1,31 @@
 #pragma once
 //==========================
 // 
-// ブロック[block.h]
+// 味方ブロック[block_ally.h]
 // Author Soma Umeda
 //
 //==========================
-#ifndef _BLOCK_H_
-#define _BLOCK_H_
+#ifndef _BLOCK_ALLY_H_
+#define _BLOCK_ALLY_H_
 
 //include
-#include "objectX.h"
+#include "block.h"
 
 //クラスの定義
-class CBlock :public CObjectX
+class CBlockAlly :public CBlock
 {
 public:
 	//定数
 	static const int PRIORITY;//描画順
 
 	//メンバ関数
-	CBlock(int nPriority = PRIORITY);//コンストラクタ
-	~CBlock() override;//デストラクタ
+	CBlockAlly(int nPriority = PRIORITY);//コンストラクタ
+	~CBlockAlly() override;//デストラクタ
 	HRESULT Init() override;//初期化処理
 	void Uninit() override;//終了処理
 	void Update() override;//更新処理
 	void Draw() override;//描画処理
-	static CBlock* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
+	static CBlockAlly* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
 private:
 	int m_nModelIdx;//テクスチャの番号
 };

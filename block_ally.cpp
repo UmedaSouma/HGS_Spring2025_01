@@ -1,22 +1,22 @@
 //==========================
 // 
-// 3Dモデル描画サンプル[block.cpp]
+// 味方ブロック[block_ally.cpp]
 // Author Soma Umeda
 //
 //==========================
 
 //include
-#include "block.h"
+#include "block_ally.h"
 #include "manager.h"
 #include "model.h"
 
 //静的メンバ初期化
-const int CBlock::PRIORITY = 1;//描画順
+const int CBlockAlly::PRIORITY = 1;//描画順
 
 //==========================
 //コンストラクタ
 //==========================
-CBlock::CBlock(int nPriority) :CObjectX(nPriority), m_nModelIdx(0)
+CBlockAlly::CBlockAlly(int nPriority) :CBlock(nPriority), m_nModelIdx(0)
 {
 
 }
@@ -24,7 +24,7 @@ CBlock::CBlock(int nPriority) :CObjectX(nPriority), m_nModelIdx(0)
 //==========================
 //デストラクタ
 //==========================
-CBlock::~CBlock()
+CBlockAlly::~CBlockAlly()
 {
 
 }
@@ -32,7 +32,7 @@ CBlock::~CBlock()
 //==========================
 //初期化処理
 //==========================
-HRESULT CBlock::Init()
+HRESULT CBlockAlly::Init()
 {
 	//サイズ設定
 	//SetSize();
@@ -46,7 +46,7 @@ HRESULT CBlock::Init()
 //==========================
 //終了処理
 //==========================
-void  CBlock::Uninit()
+void  CBlockAlly::Uninit()
 {
 	//終了処理
 	CObjectX::Uninit();
@@ -57,7 +57,7 @@ void  CBlock::Uninit()
 //==========================
 //更新処理
 //==========================
-void CBlock::Update()
+void CBlockAlly::Update()
 {
 	//更新処理
 	CObjectX::Update();
@@ -66,7 +66,7 @@ void CBlock::Update()
 //==========================
 //描画処理
 //==========================
-void CBlock::Draw()
+void CBlockAlly::Draw()
 {
 	//描画処理
 	CObjectX::Draw();
@@ -75,27 +75,27 @@ void CBlock::Draw()
 //==========================
 //オブジェクト生成
 //==========================
-CBlock* CBlock::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
+CBlockAlly* CBlockAlly::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 {
 	//インスタンス生成
-	CBlock* pBlock = DBG_NEW CBlock;
+	CBlockAlly* pBlockAlly = DBG_NEW CBlockAlly;
 
 	//位置の設定
-	pBlock->SetPos(pos);
+	pBlockAlly->SetPos(pos);
 
 	//スケールの設定
-	pBlock->SetScale(scale);
+	pBlockAlly->SetScale(scale);
 
 	//モデルの生成
 	CModel* pModel = CManager::GetInstance()->GetModel();
-	pBlock->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
-	pBlock->BindModel(pModel->GetMeshAdress(pBlock->m_nModelIdx),
-		pModel->GetBuffMatAdress(pBlock->m_nModelIdx),
-		pModel->GetNumMatAdress(pBlock->m_nModelIdx),
-		pModel->GetTexIdx(pBlock->m_nModelIdx));
+	pBlockAlly->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
+	pBlockAlly->BindModel(pModel->GetMeshAdress(pBlockAlly->m_nModelIdx),
+		pModel->GetBuffMatAdress(pBlockAlly->m_nModelIdx),
+		pModel->GetNumMatAdress(pBlockAlly->m_nModelIdx),
+		pModel->GetTexIdx(pBlockAlly->m_nModelIdx));
 
 	//初期化処理
-	pBlock->Init();
+	pBlockAlly->Init();
 
-	return pBlock;
+	return pBlockAlly;
 }
