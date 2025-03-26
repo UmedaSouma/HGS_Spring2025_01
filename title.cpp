@@ -51,7 +51,7 @@ void CTitle::Update()
 {
 	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
 	{//ƒQ[ƒ€‰æ–Ê‚É‘JˆÚ
-		CManager::GetInstance()->GetFade()->SetFade(GAME);
+		CManager::GetInstance()->GetFade()->SetFade(RESULT);
 	}
 }
 

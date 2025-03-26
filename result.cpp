@@ -30,7 +30,7 @@ CResult::~CResult()
 //==========================
 HRESULT CResult::Init()
 {
-	CBg::Create("data\\TEXTURE\\Resurt.png");
+	CBg::Create("data\\TEXTURE\\tutorial.jpg");
 
 	return S_OK;
 }
@@ -50,7 +50,7 @@ void CResult::Update()
 {
 	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
 	{//ƒ^ƒCƒgƒ‹‰æ–Ê‚É‘JˆÚ
-		CManager::GetInstance()->GetFade()->SetFade(TITLE);
+		CManager::GetInstance()->GetFade()->SetFade(GAME);
 	}
 }
 
