@@ -10,6 +10,7 @@
 
 //include
 #include "block.h"
+#include "ball.h"
 
 //クラスの定義
 class CBlockAlly :public CBlock
@@ -28,6 +29,10 @@ public:
 	void Hit() override;		//当たった時
 	static CBlockAlly* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
 private:
-	int m_nModelIdx;//テクスチャの番号
+
+	void GetBallInfo();
+
+	int m_nModelIdx;//モデルの番号
+	CBall* m_ball;//ボールの情報
 };
 #endif

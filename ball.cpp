@@ -39,6 +39,8 @@ HRESULT CBall::Init()
 
 	//èâä˙ê›íË
 	CObjectX::Init();
+	
+	SetMove({ 1.0f,0.0f,0.0f });
 
 	return S_OK;
 }
@@ -63,7 +65,7 @@ void CBall::Update()
 	CObjectX::Update();
 
 	SetPosOld(GetPos());
-	SetPos(D3DXVECTOR3(GetPos().x + 1.0f, GetPos().y, GetPos().z));
+	SetPos(GetMove()+GetPos());
 }
 
 //==========================
