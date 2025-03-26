@@ -90,7 +90,7 @@ CGoal* CGoal::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//ƒ‚ƒfƒ‹‚Ì¶¬
 	CModel* pModel = CManager::GetInstance()->GetModel();
-	pGoal->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
+	pGoal->m_nModelIdx = pModel->Regist("data\\MODEL\\goal.x");
 	pGoal->BindModel(pModel->GetMeshAdress(pGoal->m_nModelIdx),
 		pModel->GetBuffMatAdress(pGoal->m_nModelIdx),
 		pModel->GetNumMatAdress(pGoal->m_nModelIdx),

@@ -88,7 +88,7 @@ CBlock* CBlock::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//ƒ‚ƒfƒ‹‚Ì¶¬
 	CModel* pModel = CManager::GetInstance()->GetModel();
-	pBlock->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
+	pBlock->m_nModelIdx = pModel->Regist("data\\MODEL\\block.x");
 	pBlock->BindModel(pModel->GetMeshAdress(pBlock->m_nModelIdx),
 		pModel->GetBuffMatAdress(pBlock->m_nModelIdx),
 		pModel->GetNumMatAdress(pBlock->m_nModelIdx),
