@@ -80,7 +80,7 @@ void CBullet::Draw()
 //==========================
 //オブジェクト生成
 //==========================
-CBullet* CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
+CBullet* CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale, D3DXVECTOR3 move)
 {
 	//インスタンス生成
 	CBullet* pBullet = DBG_NEW CBullet;
@@ -90,6 +90,9 @@ CBullet* CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//スケールの設定
 	pBullet->SetScale(scale);
+
+	// 移動量の設定
+	pBullet->SetMove(move);
 
 	//モデルの生成
 	CModel* pModel = CManager::GetInstance()->GetModel();

@@ -9,6 +9,7 @@
 #include "player.h"
 #include"manager.h"
 #include "input.h"
+#include "bullet.h"
 
 //==========================
 //コンストラクタ
@@ -52,7 +53,13 @@ void  CPlayer::Uninit()
 //==========================
 void CPlayer::Update()
 {
+	D3DXVECTOR3 pos = GetPos();
+	D3DXVECTOR3 move = GetMove();
+
 	Operation();
+
+	pos += move;
+	SetPos(pos);
 
 	//更新処理
 	CObjectgame::Update();
@@ -153,7 +160,16 @@ void CPlayer::OpeMove()
 //===========================================================================================================
 void CPlayer::OpeBullet()
 {
+	CInputKeyboard* keyboard = CManager::GetInstance()->GetKeyboard();
+	CInputJoypad* joypad = CManager::GetInstance()->GetJoypad();
 
+	D3DXVECTOR3 pos = GetPos();
+	D3DXVECTOR3 BMove = { 0.0f,0.0f,1.0f };
+
+	if (keyboard->GetTrigger(DIK_SPACE) || joypad->GetTrigger(CInputJoypad::JOYKEY_X))
+	{
+		CBullet::Create(pos, { 1.0f,1.0f,1.0f }, BMove);
+	}
 }
 
 //==========================
@@ -163,6 +179,8 @@ CPlayer* CPlayer::Create(D3DXVECTOR3 pos)
 {
 	//インスタンス生成
 	CPlayer* pPlayer = DBG_NEW CPlayer;
+
+	pos.z -= 100.0f;
 
 	//位置の設定
 	pPlayer->SetPos(pos);

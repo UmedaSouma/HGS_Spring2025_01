@@ -24,7 +24,7 @@ public:
 	void Uninit() override;//終了処理
 	void Update() override;//更新処理
 	void Draw() override;//描画処理
-	static CBullet* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
+	static CBullet* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale, D3DXVECTOR3 move);//オブジェクト生成
 	void HitBlock();//当たり判定
 private:
 	int m_nModelIdx;//モデルの番号
