@@ -8,6 +8,7 @@
 //include
 #include"game.h"
 #include"manager.h"
+#include"block.h"
 //==========================
 // コンストラクタ
 //==========================
@@ -29,6 +30,8 @@ CGame::~CGame()
 //==========================
 HRESULT CGame::Init()
 {
+	CBlock::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
+
 	return S_OK;
 }
 
