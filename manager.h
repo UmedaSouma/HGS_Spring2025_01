@@ -18,6 +18,7 @@
 #include"scene.h"
 #include"fade.h"
 #include"collision.h"
+#include"gamemanager.h"
 
 //マネージャクラスの定義
 class CManager
@@ -44,6 +45,7 @@ public:
 	CScene* GetScene();//シーンの取得
 	CCollision* GetCollision();//当たり判定の取得
 	void SetMode(CScene::MODE mode);//画面の設定
+	CGameManager* GetGameManager();//ゲーム管理
 private:
 
 	//メンバ関数
@@ -61,6 +63,7 @@ private:
 	CScene* m_pScene;//現在の画面
 	CFade* m_pFade;//フェード
 	CCollision* m_Collision;//当たり判定
+	CGameManager* m_GameManager;//ゲーム管理
 };
 
 #endif 

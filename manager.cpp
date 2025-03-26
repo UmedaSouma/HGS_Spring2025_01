@@ -22,7 +22,8 @@ m_Texture(nullptr),//テクスチャ
 m_Model(nullptr),//モデル
 m_pFade(nullptr),//フェード
 m_pScene(nullptr),//現在の画面
-m_Collision(nullptr)//当たり判定
+m_Collision(nullptr),//当たり判定
+m_GameManager(nullptr)//ゲーム管理
 {
 	
 }
@@ -77,6 +78,9 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	//当たり判定
 	m_Collision = DBG_NEW CCollision;
+
+	//ゲーム管理
+	m_GameManager = DBG_NEW CGameManager;
 
 	return S_OK;
 }
@@ -165,6 +169,13 @@ void CManager::Uninit(void)
 		delete m_Collision;
 		m_Collision = nullptr;
 	}
+
+	if (m_GameManager != nullptr)
+	{//ゲーム管理
+		delete m_GameManager;
+		m_GameManager = nullptr;
+	}
+
 }
 
 //==========================
@@ -296,6 +307,14 @@ CScene* CManager::GetScene()
 CCollision* CManager::GetCollision()
 {
 	return m_Collision;
+}
+
+//=====================
+//ゲーム管理
+//=====================
+CGameManager* CManager::GetGameManager()
+{
+	return m_GameManager;
 }
 
 //=====================

@@ -12,6 +12,8 @@
 #include"wall.h"
 #include"ball.h"
 #include"block_ally.h"
+#include"clear.h"
+#include"GameOver.h"
 //==========================
 // コンストラクタ
 //==========================
@@ -33,6 +35,8 @@ CGame::~CGame()
 //==========================
 HRESULT CGame::Init()
 {
+	CManager::GetInstance()->GetGameManager()->reset();
+
 	float UnderOrigin = 180.0f;
 	float SideOrigin = 300.0f;
 	float VarticalScale = 17.0f;
@@ -48,7 +52,6 @@ HRESULT CGame::Init()
 		CWall::Create({ 0.0f,150,0.0f }, { 31.0f,1.0f,1.0f });		// 上壁
 		CWall::Create({ 0.0f,-UnderOrigin,0.0f }, { 31.0f,1.0f,1.0f });		// 下壁
 	}
-	
 
 	return S_OK;
 }
@@ -66,9 +69,18 @@ void CGame::Uninit()
 //==========================
 void CGame::Update()
 {
-	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
-	{//ゲーム画面に遷移
-		CManager::GetInstance()->GetFade()->SetFade(RESULT);
+	if (!CManager::GetInstance()->GetGameManager()->GetEnd())
+	{
+		return;
+	}
+
+	if (CManager::GetInstance()->GetGameManager()->GetGame())
+	{//クリアしてるとき
+		CClear::Create({ 640.0f, 300.0f, 0.0f });
+	}
+	else if (!CManager::GetInstance()->GetGameManager()->GetGame())
+	{//クリアしていない
+		COver::Create({ 640.0f, 300.0f, 0.0f });
 	}
 }
 

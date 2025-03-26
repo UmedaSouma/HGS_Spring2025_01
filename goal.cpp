@@ -126,7 +126,11 @@ void CGoal::hit()
 		&& m_ball->GetPos().y  < GetPos().y + GetVtxMax().y
 		&& m_ball->GetPos().y  > GetPos().y + GetVtxMin().y)
 	{
-		m_ball->Uninit();
+		m_ball->Uninit();//ƒ{[ƒ‹‚ðÁ‚·
+
+		CManager::GetInstance()->GetGameManager()->SetEnd();
+		CManager::GetInstance()->GetGameManager()->SetGame();
+
 	}
 }
 
