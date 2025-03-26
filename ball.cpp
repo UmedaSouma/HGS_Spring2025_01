@@ -137,5 +137,5 @@ void CBall::SubLife()
 //==========================
 void CBall::Reset()
 {
-	SetPos({ 0.0f, -50.0f, 0.0 });
+	SetPos({ -150.0f, -50.0f, 0.0 });
 }

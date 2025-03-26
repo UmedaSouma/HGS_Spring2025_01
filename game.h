@@ -9,6 +9,7 @@
 
 //include
 #include"scene.h"
+#include "create_block.h"
 
 //ゲームクラスの定義
 class CGame :public CScene
@@ -24,6 +25,7 @@ public:
 	void Draw()override;//描画処理
 private:
 	void Start();
+	static CCreateBlock* m_pCreteBlock;
 };
 
 #endif 

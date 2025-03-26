@@ -15,6 +15,9 @@
 #include"clear.h"
 #include"GameOver.h"
 #include"goal.h"
+#include "player.h"
+
+CCreateBlock* CGame::m_pCreteBlock = nullptr;
 //==========================
 // コンストラクタ
 //==========================
@@ -42,9 +45,17 @@ HRESULT CGame::Init()
 	float SideOrigin = 300.0f;
 	float VarticalScale = 17.0f;
 
-	CBall::Create({ 0.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
+	CPlayer::Create({ 0.0f,0.0f,0.0f });
+
+	CBall::Create({ -150.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
 	CBlockAlly::Create({ 0.0f,0.0f,0.0f }, { 5.0f,5.0f,5.0f });
+
+	if (m_pCreteBlock == nullptr)
+	{
+		m_pCreteBlock = DBG_NEW CCreateBlock;
+		m_pCreteBlock->Init();
+	}
 
 	{// 壁配置
 		CWall::Create({ -SideOrigin,-UnderOrigin,0.0f }, { 1.0f,VarticalScale,1.0f });	// 左壁
@@ -62,6 +73,12 @@ HRESULT CGame::Init()
 //==========================
 void CGame::Uninit()
 {
+	if (m_pCreteBlock != nullptr)
+	{
+		delete m_pCreteBlock;
+		m_pCreteBlock = nullptr;
+	}
+
 	CObject::ReleaseAll();
 }
 
@@ -75,6 +92,11 @@ void CGame::Update()
 	if (!CManager::GetInstance()->GetGameManager()->GetEnd())
 	{
 		return;
+	}
+
+	if (m_pCreteBlock != nullptr)
+	{
+		m_pCreteBlock->Update();
 	}
 
 	if (CManager::GetInstance()->GetGameManager()->GetGame())

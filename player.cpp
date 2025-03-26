@@ -49,6 +49,12 @@ HRESULT CPlayer::Init()
 //==========================
 void  CPlayer::Uninit()
 {
+	if (PUI != nullptr)
+	{
+		delete PUI;
+		PUI = nullptr;
+	}
+
 	//I—¹ˆ—
 	CObjectgame::Uninit();
 }
@@ -171,7 +177,7 @@ void CPlayer::OpeBullet()
 	CInputJoypad* joypad = CManager::GetInstance()->GetJoypad();
 
 	D3DXVECTOR3 pos = GetPos();
-	D3DXVECTOR3 BMove = { 0.0f,0.0f,3.0f };
+	D3DXVECTOR3 BMove = { 0.0f,0.0f,15.0f };
 
 	if (keyboard->GetTrigger(DIK_SPACE) || joypad->GetTrigger(CInputJoypad::JOYKEY_X))
 	{
