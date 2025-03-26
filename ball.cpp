@@ -16,7 +16,10 @@ const int CBall::PRIORITY = 1;//描画順
 //==========================
 //コンストラクタ
 //==========================
-CBall::CBall(int nPriority) :CObjectX(nPriority), m_nModelIdx(0)
+CBall::CBall(int nPriority) :
+	CObjectX(nPriority),
+m_nModelIdx(0),
+m_Life(MAXLIFE)//寿命
 {
 
 }
@@ -106,4 +109,28 @@ CBall* CBall::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	pBall->SetType(TYPE::BALL);
 
 	return pBall;
+}
+
+//==========================
+//寿命を減らす
+//==========================
+void CBall::SubLife()
+{
+	m_Life--;
+
+	Reset();
+
+	if (m_Life <= 0)
+	{
+		Uninit();
+		CManager::GetInstance()->GetGameManager()->SetEnd();
+	}
+}
+
+//==========================
+//位置初期化
+//==========================
+void CBall::Reset()
+{
+	SetPos({ 0.0f, -50.0f, 0.0 });
 }

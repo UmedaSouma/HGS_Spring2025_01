@@ -133,7 +133,7 @@ void CBlockEnemy::Hit()
 
 	if (collision)
 	{
-		m_ball->Uninit();
+		m_ball->SubLife();
 		return;
 	}
 
@@ -143,7 +143,7 @@ void CBlockEnemy::Hit()
 
 	if (collision)
 	{
-		m_ball->Uninit();
+		m_ball->SubLife();
 		return;
 	}
 
@@ -153,7 +153,7 @@ void CBlockEnemy::Hit()
 
 	if (collision)
 	{
-		m_ball->Uninit();
+		m_ball->SubLife();
 		return;
 	}
 
@@ -163,7 +163,7 @@ void CBlockEnemy::Hit()
 
 	if (collision)
 	{
-		m_ball->Uninit();
+		m_ball->SubLife();
 		return;
 	}
 }
