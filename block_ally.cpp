@@ -69,6 +69,14 @@ void  CBlockAlly::Uninit()
 //==========================
 void CBlockAlly::Update()
 {
+	SetPosOld(GetPos());
+	SetPos(GetMove() + GetPos());
+
+	if (GetPos().z > 0)
+	{
+		SetMove({ 0.0f,0.0f,0.0f });
+	}
+
 	//更新処理
 	CObjectX::Update();
 
@@ -88,7 +96,7 @@ void CBlockAlly::Draw()
 //==========================
 //オブジェクト生成
 //==========================
-CBlockAlly* CBlockAlly::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
+CBlockAlly* CBlockAlly::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale, D3DXVECTOR3 move)
 {
 	//インスタンス生成
 	CBlockAlly* pBlockAlly = DBG_NEW CBlockAlly;
@@ -98,6 +106,8 @@ CBlockAlly* CBlockAlly::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//スケールの設定
 	pBlockAlly->SetScale(scale);
+
+	pBlockAlly->SetMove(move);
 
 	//モデルの生成
 	CModel* pModel = CManager::GetInstance()->GetModel();
@@ -128,6 +138,7 @@ void CBlockAlly::Hit()
 	if (collision)
 	{
 		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		Uninit();
 		return;
 	}
 
@@ -138,6 +149,7 @@ void CBlockAlly::Hit()
 	if (collision)
 	{
 		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		Uninit();
 		return;
 	}
 
@@ -148,6 +160,7 @@ void CBlockAlly::Hit()
 	if (collision)
 	{
 		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		Uninit();
 		return;
 	}
 
@@ -158,6 +171,7 @@ void CBlockAlly::Hit()
 	if (collision)
 	{
 		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		Uninit();
 		return;
 	}
 }

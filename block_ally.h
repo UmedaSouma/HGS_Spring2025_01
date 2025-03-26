@@ -27,7 +27,7 @@ public:
 	void Update() override;		//更新処理
 	void Draw() override;		//描画処理
 	void Hit() override;		//当たった時
-	static CBlockAlly* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale);//オブジェクト生成
+	static CBlockAlly* Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale, D3DXVECTOR3 move);//オブジェクト生成
 private:
 
 	void GetBallInfo();//ボールの情報を取得

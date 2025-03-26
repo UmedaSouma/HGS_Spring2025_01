@@ -26,8 +26,11 @@ public:
 	void Operation();	// 操作
 	void OpeMove();		// 移動操作
 	void OpeBullet();
+	void CountBreak();
 	static CPlayer* Create(D3DXVECTOR3 pos);//オブジェクト生成
 private:
 	static CPlayerposUI* PUI;
+	int CountBlock;
+	int nBlock;
 };
 #endif

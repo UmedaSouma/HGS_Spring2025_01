@@ -53,9 +53,7 @@ void CCreateBlock::Uninit()
 //===========================================================================================================
 void CCreateBlock::Update()
 {
-
-
-	if (m_nTimer % 600 == 0 && m_nTimer != 0)
+	if (m_nTimer % 60 == 0 && m_nTimer != 0)
 	{
 		for (int i = 0; i < MAX_V; i++)
 		{

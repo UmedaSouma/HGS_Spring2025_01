@@ -17,6 +17,7 @@ public:
 	typedef enum
 	{
 		NONE = 0,//無し
+		PLAYER,
 		FADE,//フェード
 		BALL,//ボール
 		ENEMYBLOCK,//敵ブロック

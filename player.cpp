@@ -10,6 +10,7 @@
 #include"manager.h"
 #include "input.h"
 #include "bullet.h"
+#include "block_ally.h"
 
 //
 CPlayerposUI* CPlayer::PUI = nullptr;
@@ -36,10 +37,13 @@ CPlayer::~CPlayer()
 //==========================
 HRESULT CPlayer::Init()
 {
+	CountBlock = 0;
+	nBlock = 0;
+
 	//‰ŠúÝ’è
 	CObjectgame::Init();
 
-	//PUI = CPlayerposUI::Create({ 0.0f,0.0f,0.0f }, { 10.0f,10.0f,1.0f });
+	PUI = CPlayerposUI::Create({ 0.0f,0.0f,0.0f }, { 10.0f,10.0f,1.0f });
 
 	return S_OK;
 }
@@ -65,10 +69,19 @@ void  CPlayer::Uninit()
 //==========================
 void CPlayer::Update()
 {
+
+	if (!CManager::GetInstance()->GetGameManager()->GetStart())
+	{//ŠJŽn‚µ‚Ä‚¢‚é
+		return;
+	}
+
 	D3DXVECTOR3 pos = GetPos();
 	D3DXVECTOR3 move = GetMove();
 
-	//PUI->SetPos({ pos.x,pos.y,-50.0f });
+	if (PUI != nullptr)
+	{
+		PUI->SetPos({ pos.x,pos.y,-50.0f });
+	}
 
 	Operation();
 
@@ -184,6 +197,28 @@ void CPlayer::OpeBullet()
 	{
 		CBullet::Create(pos, { 1.0f,1.0f,1.0f }, BMove);
 	}
+
+	if (keyboard->GetTrigger(DIK_N) || joypad->GetTrigger(CInputJoypad::JOYKEY_Y))
+	{
+		if (nBlock > 0)
+		{
+			D3DXVECTOR3 posA = pos;
+			posA.y -= 20;
+			CBlockAlly::Create(posA, { 2.0f,2.0f,1.0f }, BMove);
+			nBlock--;
+		}
+	}
+}
+
+void CPlayer::CountBreak()
+{
+	CountBlock++;
+
+	if (CountBlock >= 3)
+	{
+		nBlock++;
+		CountBlock = 0;
+	}
 }
 
 //==========================
@@ -198,6 +233,8 @@ CPlayer* CPlayer::Create(D3DXVECTOR3 pos)
 
 	//ˆÊ’u‚ÌÝ’è
 	pPlayer->SetPos(pos);
+
+	pPlayer->SetType(CObject::PLAYER);
 
 	//‰Šú‰»ˆ—
 	pPlayer->Init();
