@@ -72,6 +72,8 @@ void CBlockEnemy::Update()
 {
 	//更新処理
 	CObjectX::Update();
+	
+	Hit();
 }
 
 //==========================
@@ -121,7 +123,7 @@ void CBlockEnemy::Hit()
 
 	//左側の判定
 	bool collision = pCollision->RectangleLeft(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
-		GetVtxMax(), GetVtxMin(), m_ball->GetVtxMax(), m_ball->GetVtxMin());
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
 
 	if (collision)
 	{
@@ -156,5 +158,7 @@ void CBlockEnemy::GetBallInfo()
 
 		//ボールの情報を取得
 		m_ball = dynamic_cast<CBall*>(pObj);
+
+		break;
 	}
 }

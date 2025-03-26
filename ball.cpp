@@ -35,7 +35,7 @@ CBall::~CBall()
 HRESULT CBall::Init()
 {
 	//サイズ設定
-	//SetSize();
+	SetSize();
 
 	//初期設定
 	CObjectX::Init();
@@ -61,6 +61,9 @@ void CBall::Update()
 {
 	//更新処理
 	CObjectX::Update();
+
+	SetPosOld(GetPos());
+	SetPos(D3DXVECTOR3(GetPos().x + 1.0f, GetPos().y, GetPos().z));
 }
 
 //==========================
@@ -96,6 +99,9 @@ CBall* CBall::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 
 	//初期化処理
 	pBall->Init();
+
+	//タイプ設定
+	pBall->SetType(TYPE::BALL);
 
 	return pBall;
 }

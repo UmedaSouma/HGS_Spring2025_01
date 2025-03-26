@@ -47,8 +47,8 @@ bool CCollision::RectangleLeft(D3DXVECTOR3 posold, D3DXVECTOR3 mypos, D3DXVECTOR
 {
 	if (posold.x + myvtxmax.x <= partnerpos.x + partnervtxmin.x
 		&& mypos.x + myvtxmax.x > partnerpos.x + partnervtxmin.x
-		&& mypos.z - myvtxmin.z < partnerpos.z + partnervtxmax.z
-		&& mypos.z + myvtxmax.z > partnerpos.z + partnervtxmax.z)
+		&& mypos.y + myvtxmin.y < partnerpos.y + partnervtxmax.y
+		&& mypos.y + myvtxmax.y > partnerpos.y + partnervtxmin.y)
 	{
 		return true;
 	}
