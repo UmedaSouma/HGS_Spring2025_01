@@ -11,7 +11,7 @@
 
 //静的メンバ変数初期化
 const float CCamera::Y_DISTANCE = 10.0f;//距離
-const float CCamera::Z_DISTANCE = -200.0f;//距離
+const float CCamera::Z_DISTANCE = -500.0f;//距離
 //==========================
 // コンストラクタ
 //==========================

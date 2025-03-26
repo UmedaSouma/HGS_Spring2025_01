@@ -9,6 +9,7 @@
 #include"game.h"
 #include"manager.h"
 #include"block.h"
+#include "wall.h"
 //==========================
 // コンストラクタ
 //==========================
@@ -31,6 +32,14 @@ CGame::~CGame()
 HRESULT CGame::Init()
 {
 	CBlock::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
+
+	{// 壁配置
+		CWall::Create({ -100.0f,-100.0f,0.0f }, { 1.0f,13.0f,1.0f });	// 左壁
+		CWall::Create({ 100.0f,-100.0f,0.0f }, { 1.0f,13.0f,1.0f });	// 右壁
+		CWall::Create({ 0.0f,150.0f,0.0f }, { 11.0f,1.0f,1.0f });	// 上壁
+		CWall::Create({ 0.0f,-150.0f,0.0f }, { 11.0f,1.0f,1.0f });	// 下壁
+	}
+	
 
 	return S_OK;
 }
