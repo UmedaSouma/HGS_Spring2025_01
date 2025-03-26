@@ -11,19 +11,20 @@
 //==========================
 // コンストラクタ
 //==========================
-CManager::CManager(void)
+CManager::CManager(void):
+m_pRenderer(nullptr),//レンダラー
+m_pKeyboard(nullptr),//キーボード
+m_pJoypad(nullptr),//キーボード
+m_pSound(nullptr),//サウンド
+m_Camera(nullptr),//カメラ情報取得
+m_Light(nullptr),//ライト情報取得
+m_Texture(nullptr),//テクスチャ
+m_Model(nullptr),//モデル
+m_pFade(nullptr),//フェード
+m_pScene(nullptr),//現在の画面
+m_Collision(nullptr)//当たり判定
 {
-	m_pRenderer = nullptr;//レンダラー
-	m_pKeyboard = nullptr;//キーボード
-	m_pJoypad = nullptr;//キーボード
-	m_pSound = nullptr;//サウンド
-	m_Camera = nullptr;//カメラ情報取得
-	m_Light = nullptr;//ライト情報取得
-	//m_BlockManager = nullptr;//ブロック管理
-	m_Texture = nullptr;//テクスチャ
-	m_Model = nullptr;//モデル
-	m_pFade = nullptr;//フェード
-	m_pScene = nullptr;//現在の画面
+	
 }
 
 //==========================
@@ -54,8 +55,7 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	//サウンド
 	m_pSound = DBG_NEW CSound;
 	m_pSound->Init(hWnd);
-	//m_pSound->PlaySoundA(CSound::SOUND_LABEL_BGM001);
-
+	
 	//カメラ
 	m_Camera = DBG_NEW CCamera;
 	m_Camera->Init();
@@ -72,9 +72,12 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	//フェード
 	m_pFade = CFade::Create();
-	m_pFade->SetFade(CScene::MODE::TITLE);//最初のシーン設定
-	//m_pFade->SetFade(CScene::MODE::RESULT);//最初のシーン設定
-	
+	//m_pFade->SetFade(CScene::MODE::TITLE);//最初のシーン設定
+	m_pFade->SetFade(CScene::MODE::GAME);//最初のシーン設定
+
+	//当たり判定
+	m_Collision = DBG_NEW CCollision;
+
 	return S_OK;
 }
 
@@ -156,6 +159,12 @@ void CManager::Uninit(void)
 		delete m_pFade;
 		m_pFade = nullptr;
 	}
+
+	if (m_Collision != nullptr)
+	{//当たり判定
+		delete m_Collision;
+		m_Collision = nullptr;
+	}
 }
 
 //==========================
@@ -163,18 +172,14 @@ void CManager::Uninit(void)
 //==========================
 void CManager::Update(void)
 {
-	if (m_pKeyboard->GetTrigger(DIK_G))
-	{
-		m_pSound->Stop();
-	}
-
 	m_pRenderer->Update();//レンダラーの更新
 
 	m_pKeyboard->Update();//キーボードの更新
 
 	m_pJoypad->Update();//パッドの更新
 
-	if (m_pFade->GetFade() == CFade::NONE)
+	//if (m_pFade->GetFade() == CFade::FADE::FADE_NONE)
+	if (m_pScene != nullptr)
 	{//フェードしてないとき
 		m_pScene->Update();//シーンの更新
 	}
@@ -189,7 +194,8 @@ void CManager::Draw(void)
 {
 	m_pRenderer->Draw();//レンダラーの描画
 
-	if (m_pFade->GetFade() == CFade::NONE)
+	//if (m_pFade->GetFade() == CFade::FADE::FADE_NONE)
+	if (m_pScene != nullptr)
 	{//フェードしてないとき
 		m_pScene->Draw();//シーンの描画
 	}
@@ -237,14 +243,6 @@ CManager* CManager::GetInstance()
 }
 
 //=====================
-//ブロック管理取得
-//=====================
-//CBlockManager* CManager::GetBlockManager(void)
-//{
-//	return m_BlockManager;
-//}
-
-//=====================
 //カメラ情報取得
 //=====================
 CCamera* CManager::GetCamera(void)
@@ -282,6 +280,22 @@ CModel* CManager::GetModel()
 CFade* CManager::GetFade()
 {
 	return m_pFade;
+}
+
+//=====================
+//シーンの取得
+//=====================
+CScene* CManager::GetScene()
+{
+	return m_pScene;
+}
+
+//=====================
+//当たり判定の取得
+//=====================
+CCollision* CManager::GetCollision()
+{
+	return m_Collision;
 }
 
 //=====================

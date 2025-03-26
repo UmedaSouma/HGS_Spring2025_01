@@ -17,6 +17,7 @@
 #include"model.h"
 #include"scene.h"
 #include"fade.h"
+#include"collision.h"
 
 //マネージャクラスの定義
 class CManager
@@ -35,12 +36,13 @@ public:
 	CInputKeyboard*GetKeyboard();//キーボード入力取得
 	CInputJoypad* GetJoypad();//パッド情報取得
 	CSound* GetSound();//サウンド情報取得
-	//CBlockManager* GetBlockManager();//ブロック情報取得
 	CCamera* GetCamera();//カメラ情報取得
 	CLight* GetLight();//ライト情報取得
 	CTexture* GetTexture();//テクスチャ情報取得
 	CModel* GetModel();//モデル情報取得
 	CFade* GetFade();//フェードの取得
+	CScene* GetScene();//シーンの取得
+	CCollision* GetCollision();//当たり判定の取得
 	void SetMode(CScene::MODE mode);//画面の設定
 private:
 
@@ -52,13 +54,13 @@ private:
 	CInputKeyboard* m_pKeyboard;//キーボード
 	CInputJoypad* m_pJoypad;//キーボード
 	CSound* m_pSound;//サウンド
-	CCamera* m_Camera;//カメラ情報取得
-	CLight* m_Light;//ライト情報取得
-	//CBlockManager* m_BlockManager;//ブロック管理
+	CCamera* m_Camera;//カメラ情報
+	CLight* m_Light;//ライト情報
 	CTexture* m_Texture;//テクスチャ
 	CModel* m_Model;//モデル
 	CScene* m_pScene;//現在の画面
 	CFade* m_pFade;//フェード
+	CCollision* m_Collision;//当たり判定
 };
 
 #endif 
