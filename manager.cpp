@@ -74,7 +74,7 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	//フェード
 	m_pFade = CFade::Create();
 	//m_pFade->SetFade(CScene::MODE::TITLE);//最初のシーン設定
-	m_pFade->SetFade(CScene::MODE::GAME);//最初のシーン設定
+	m_pFade->SetFade(CScene::MODE::TITLE);//最初のシーン設定
 
 	//当たり判定
 	m_Collision = DBG_NEW CCollision;

@@ -92,15 +92,17 @@ void CGame::Update()
 {
 	Start();
 
+	if (m_pCreteBlock != nullptr)
+	{
+		m_pCreteBlock->Update();
+	}
+
 	if (!CManager::GetInstance()->GetGameManager()->GetEnd())
 	{
 		return;
 	}
 
-	if (m_pCreteBlock != nullptr)
-	{
-		m_pCreteBlock->Update();
-	}
+	
 
 	if (CManager::GetInstance()->GetGameManager()->GetGame())
 	{//ƒNƒŠƒA‚µ‚Ä‚é‚Æ‚«

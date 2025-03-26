@@ -38,7 +38,7 @@ CPlayer::~CPlayer()
 HRESULT CPlayer::Init()
 {
 	CountBlock = 0;
-	nBlock = 0;
+	nBlock = 2;
 
 	//‰Šúİ’è
 	CObjectgame::Init();
