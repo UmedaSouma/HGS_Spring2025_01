@@ -20,6 +20,7 @@ public:
 	void Uninit() override;//終了処理
 	void Update() override;//更新処理
 	void Draw() override;//描画処理
+	void Operation();	// 操作
 	static CPlayer* Create(D3DXVECTOR3 pos);//オブジェクト生成
 private:
 };
