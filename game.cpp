@@ -31,13 +31,18 @@ CGame::~CGame()
 //==========================
 HRESULT CGame::Init()
 {
+	float UnderOrigin = 180.0f;
+	float SideOrigin = 300.0f;
+	float VarticalScale = 17.0f;
+
 	CBlock::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
 	{// 壁配置
-		CWall::Create({ -100.0f,-100.0f,0.0f }, { 1.0f,13.0f,1.0f });	// 左壁
-		CWall::Create({ 100.0f,-100.0f,0.0f }, { 1.0f,13.0f,1.0f });	// 右壁
-		CWall::Create({ 0.0f,150.0f,0.0f }, { 11.0f,1.0f,1.0f });	// 上壁
-		CWall::Create({ 0.0f,-150.0f,0.0f }, { 11.0f,1.0f,1.0f });	// 下壁
+		CWall::Create({ -SideOrigin,-UnderOrigin,0.0f }, { 1.0f,VarticalScale,1.0f });	// 左壁
+		CWall::Create({ SideOrigin,-UnderOrigin,0.0f }, { 1.0f,VarticalScale,1.0f });	// 右壁
+
+		CWall::Create({ 0.0f,150,0.0f }, { 31.0f,1.0f,1.0f });		// 上壁
+		CWall::Create({ 0.0f,-UnderOrigin,0.0f }, { 31.0f,1.0f,1.0f });		// 下壁
 	}
 	
 
