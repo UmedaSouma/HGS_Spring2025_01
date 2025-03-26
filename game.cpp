@@ -16,6 +16,7 @@
 #include"GameOver.h"
 #include"goal.h"
 #include "player.h"
+#include"start.h"
 
 CCreateBlock* CGame::m_pCreteBlock = nullptr;
 //==========================
@@ -64,6 +65,8 @@ HRESULT CGame::Init()
 		CWall::Create({ 0.0f,150,0.0f }, { 31.0f,1.0f,1.0f });		// è„ï«
 		CWall::Create({ 0.0f,-UnderOrigin,0.0f }, { 31.0f,1.0f,1.0f });		// â∫ï«
 	}
+
+	CStart::Create({ 640.0f, 300.0f, 0.0f });
 
 	return S_OK;
 }
