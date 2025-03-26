@@ -207,6 +207,9 @@
     <ClCompile Include="gamemanager.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
+    <ClCompile Include="start.cpp">
+      <Filter>ソース ファイル\gameobject\object2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="gamemanager.h">
       <Filter>ヘッダー ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="start.h">
+      <Filter>ヘッダー ファイル\gameobject\object2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

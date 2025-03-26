@@ -69,6 +69,7 @@
     <ClCompile Include="sample_objectX.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sound.cpp" />
+    <ClCompile Include="start.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="wall.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="sample_objectX.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="sound.h" />
+    <ClInclude Include="start.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="wall.h" />
