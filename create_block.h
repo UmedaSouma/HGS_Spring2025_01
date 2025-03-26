@@ -9,11 +9,11 @@
 #define _CREATE_BLOCK_H_
 #include "main.h"
 
-class CreateBlock
+class CCreateBlock
 {
 public:
-	CreateBlock();
-	~CreateBlock();
+	CCreateBlock();
+	~CCreateBlock();
 	void Init();	// ‰Šúİ’è
 	void Uninit();	// I—¹ˆ—
 	void Update();

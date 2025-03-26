@@ -121,6 +121,9 @@ void CBlockEnemy::Hit()
 	//“–‚½‚è”»’è‚Ìî•ñ‚ðŽæ“¾
 	CCollision* pCollision = CManager::GetInstance()->GetCollision();
 
+	if(m_ball==nullptr)
+	{	return;	}
+
 	//¶‘¤‚Ì”»’è
 	bool collision = pCollision->RectangleLeft(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
 		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
