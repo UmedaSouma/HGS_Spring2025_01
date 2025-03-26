@@ -9,6 +9,7 @@
 #include "bullet.h"
 #include "manager.h"
 #include "model.h"
+#include "block_enemy.h"
 
 //静的メンバ初期化
 const int CBullet::PRIORITY = 1;//描画順
@@ -63,6 +64,8 @@ void CBullet::Update()
 {
 	//更新処理
 	CObjectX::Update();
+
+	HitBlock();
 }
 
 //==========================
@@ -100,4 +103,45 @@ CBullet* CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	pBullet->Init();
 
 	return pBullet;
+}
+
+//==========================
+//当たり判定
+//==========================
+void CBullet::HitBlock()
+{
+	//オブジェクトを取得
+	CObject* pObj = CObject::GetObj(nullptr, CBlockEnemy::PRIORITY);
+
+	while (pObj != nullptr)
+	{
+		if (pObj == nullptr)
+		{//オブジェクトがない
+			pObj = CObject::GetObj(pObj, CBlockEnemy::PRIORITY);
+			continue;
+		}
+
+		//種類の取得
+		CObject::TYPE type = pObj->GetType();
+
+		if (type != CObject::TYPE::ENEMYBLOCK)
+		{//オブジェクトが敵ではない
+			pObj = CObject::GetObj(pObj, CBlockEnemy::PRIORITY);
+			continue;
+		}
+
+		//敵ブロックの情報を取得
+		CBlockEnemy* pBlockEnemy = dynamic_cast<CBlockEnemy*>(pObj);
+
+		if (GetPos().x  <= pBlockEnemy->GetPos().x + pBlockEnemy->GetVtxMax().x
+			&& GetPos().x  > pBlockEnemy->GetPos().x + pBlockEnemy->GetVtxMin().x
+			&& GetPos().y  < pBlockEnemy->GetPos().y + pBlockEnemy->GetVtxMax().y
+			&& GetPos().y  > pBlockEnemy->GetPos().y + pBlockEnemy->GetVtxMin().y)
+		{
+			pBlockEnemy->Uninit();
+			Uninit();
+		}
+
+		pObj = CObject::GetObj(pObj, CBlockEnemy::PRIORITY);
+	}
 }

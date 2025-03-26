@@ -19,6 +19,7 @@ public:
 		NONE = 0,//無し
 		FADE,//フェード
 		BALL,//ボール
+		ENEMYBLOCK,//敵ブロック
 		MAX,
 	}TYPE;
 

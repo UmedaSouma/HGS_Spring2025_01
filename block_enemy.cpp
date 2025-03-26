@@ -110,6 +110,9 @@ CBlockEnemy* CBlockEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	//‰Šú‰»ˆ—
 	pBlockEnemy->Init();
 
+	//ƒ^ƒCƒvÝ’è
+	pBlockEnemy->SetType(TYPE::ENEMYBLOCK);
+
 	return pBlockEnemy;
 }
 

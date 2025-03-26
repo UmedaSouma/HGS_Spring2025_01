@@ -5,8 +5,8 @@
 // Author Soma Umeda
 //
 //==========================
-#ifndef _BLOCK_ALLY_H_
-#define _BLOCK_ALLY_H_
+#ifndef _BLOCK_ENEMY_H_
+#define _BLOCK_ENEMY_H_
 
 //include
 #include "block.h"
