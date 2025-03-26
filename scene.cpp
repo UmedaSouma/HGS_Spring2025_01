@@ -9,6 +9,7 @@
 #include"scene.h"
 #include"title.h"
 #include"game.h"
+#include "game_test_01.h"
 #include"result.h"
 
 //==========================
@@ -75,6 +76,10 @@ CScene* CScene::Create(MODE mode)
 
 	case GAME:
 		pScene = DBG_NEW CGame;
+		break;
+
+	case GAME_TEST_01:
+		pScene = DBG_NEW CGameTest01;
 		break;
 
 	case RESULT:

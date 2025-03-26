@@ -16,6 +16,7 @@ public:
 	{
 		TITLE=0,//タイトル
 		GAME,//ゲーム
+		GAME_TEST_01,//ゲームテスト
 		RESULT,//リザルト
 		MAX,
 	}MODE;

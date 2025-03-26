@@ -21,6 +21,8 @@ public:
 	void Update() override;//更新処理
 	void Draw() override;//描画処理
 	void Operation();	// 操作
+	void OpeMove();		// 移動操作
+	void OpeBullet();
 	static CPlayer* Create(D3DXVECTOR3 pos);//オブジェクト生成
 private:
 };

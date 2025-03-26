@@ -192,6 +192,9 @@
     <ClCompile Include="bullet.cpp">
       <Filter>ソース ファイル\gameobject\objectX</Filter>
     </ClCompile>
+    <ClCompile Include="game_test_01.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="bullet.h">
       <Filter>ヘッダー ファイル\gameobject\objectX</Filter>
+    </ClInclude>
+    <ClInclude Include="game_test_01.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
