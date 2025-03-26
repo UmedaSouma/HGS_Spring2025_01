@@ -1,0 +1,304 @@
+//==========================
+// 
+// マネージャー[manager.cpp]
+// Author Yuki Goto
+//
+//==========================
+
+//include
+#include"manager.h"
+
+//==========================
+// コンストラクタ
+//==========================
+CManager::CManager(void)
+{
+	m_pRenderer = nullptr;//レンダラー
+	m_pKeyboard = nullptr;//キーボード
+	m_pJoypad = nullptr;//キーボード
+	m_pSound = nullptr;//サウンド
+	m_Camera = nullptr;//カメラ情報取得
+	m_Light = nullptr;//ライト情報取得
+	//m_BlockManager = nullptr;//ブロック管理
+	m_Texture = nullptr;//テクスチャ
+	m_Model = nullptr;//モデル
+	m_pFade = nullptr;//フェード
+	m_pScene = nullptr;//現在の画面
+}
+
+//==========================
+// デストラクタ
+//==========================
+CManager::~CManager(void)
+{
+
+}
+
+//==========================
+// 初期設定
+//==========================
+HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
+{
+	//レンダラーの生成
+	m_pRenderer = DBG_NEW CRenderer;
+	m_pRenderer->Init(hWnd, bWindow);
+
+	//キーボード
+	m_pKeyboard = DBG_NEW CInputKeyboard;
+	m_pKeyboard->Init(hInstance, hWnd);
+
+	//パッド
+	m_pJoypad = DBG_NEW CInputJoypad;
+	m_pJoypad->Init(hInstance, hWnd);
+
+	//サウンド
+	m_pSound = DBG_NEW CSound;
+	m_pSound->Init(hWnd);
+	//m_pSound->PlaySoundA(CSound::SOUND_LABEL_BGM001);
+
+	//カメラ
+	m_Camera = DBG_NEW CCamera;
+	m_Camera->Init();
+
+	//ライト
+	m_Light = DBG_NEW CLight;
+	m_Light->Init();
+
+	//テクスチャ
+	m_Texture = DBG_NEW CTexture;
+	
+	//モデル
+	m_Model = DBG_NEW CModel;
+
+	//フェード
+	m_pFade = CFade::Create();
+	m_pFade->SetFade(CScene::MODE::TITLE);//最初のシーン設定
+	//m_pFade->SetFade(CScene::MODE::RESULT);//最初のシーン設定
+	
+	return S_OK;
+}
+
+//==========================
+// 終了処理
+//==========================
+void CManager::Uninit(void)
+{
+
+	//全オブジェクト解放
+	CObject::ReleaseAll();
+
+	if (m_pRenderer != nullptr)
+	{//レンダラー
+		m_pRenderer->Uninit();
+		delete m_pRenderer;
+		m_pRenderer = nullptr;
+	}
+
+	if (m_pScene != nullptr)
+	{//シーン
+		m_pScene->Uninit();
+		delete m_pScene;
+		m_pScene = nullptr;
+	}
+
+	if (m_pKeyboard != nullptr)
+	{//キーボード
+		m_pKeyboard->Uninit();
+		delete m_pKeyboard;
+		m_pKeyboard = nullptr;
+	}
+	
+	if (m_pJoypad != nullptr)
+	{//パッド
+		m_pJoypad->Uninit();
+		delete m_pJoypad;
+		m_pJoypad = nullptr;
+	}
+
+	if (m_pSound != nullptr)
+	{//サウンド
+		m_pSound->Uninit();
+		delete m_pSound;
+		m_pSound = nullptr;
+	}
+
+	if (m_Camera != nullptr)
+	{//カメラ
+		m_Camera->Uninit();
+		delete m_Camera;
+		m_Camera = nullptr;
+	}
+
+	if (m_Light != nullptr)
+	{//ライト
+		m_Light->Uninit();
+		delete m_Light;
+		m_Light = nullptr;
+	}
+
+	if (m_Texture != nullptr)
+	{//テクスチャ
+		m_Texture->UnLoad();
+		delete m_Texture;
+		m_Texture = nullptr;
+	}
+
+	if (m_Model != nullptr)
+	{//モデル
+		m_Model->UnLoad();
+		delete m_Model;
+		m_Model = nullptr;
+	}
+
+	if (m_pFade != nullptr)
+	{//フェード
+		m_pFade->CObject2D::Uninit();
+		delete m_pFade;
+		m_pFade = nullptr;
+	}
+}
+
+//==========================
+// 更新処理
+//==========================
+void CManager::Update(void)
+{
+	if (m_pKeyboard->GetTrigger(DIK_G))
+	{
+		m_pSound->Stop();
+	}
+
+	m_pRenderer->Update();//レンダラーの更新
+
+	m_pKeyboard->Update();//キーボードの更新
+
+	m_pJoypad->Update();//パッドの更新
+
+	if (m_pFade->GetFade() == CFade::NONE)
+	{//フェードしてないとき
+		m_pScene->Update();//シーンの更新
+	}
+	
+	m_Camera->Update();//カメラの更新
+}
+
+//==========================
+// 描画処理
+//==========================
+void CManager::Draw(void)
+{
+	m_pRenderer->Draw();//レンダラーの描画
+
+	if (m_pFade->GetFade() == CFade::NONE)
+	{//フェードしてないとき
+		m_pScene->Draw();//シーンの描画
+	}
+}
+
+//=====================
+//レンダラー取得
+//=====================
+CRenderer* CManager::GetRenderer(void)
+{
+	return m_pRenderer;
+}
+
+//=====================
+//キーボード取得
+//=====================
+CInputKeyboard* CManager::GetKeyboard(void)
+{
+	return m_pKeyboard;
+}
+
+//=====================
+//パッド取得
+//=====================
+CInputJoypad* CManager::GetJoypad(void)
+{
+	return m_pJoypad;
+}
+
+//=====================
+//サウンド取得
+//=====================
+CSound* CManager::GetSound(void)
+{
+	return m_pSound;
+}
+
+//=====================
+//インスタンス取得
+//=====================
+CManager* CManager::GetInstance()
+{
+	static CManager instance;
+	return &instance;
+}
+
+//=====================
+//ブロック管理取得
+//=====================
+//CBlockManager* CManager::GetBlockManager(void)
+//{
+//	return m_BlockManager;
+//}
+
+//=====================
+//カメラ情報取得
+//=====================
+CCamera* CManager::GetCamera(void)
+{
+	return m_Camera;
+}
+
+//=====================
+//ライト情報取得
+//=====================
+CLight* CManager::GetLight(void)
+{
+	return m_Light;
+}
+
+//=====================
+//テクスチャ情報取得
+//=====================
+CTexture* CManager::GetTexture(void)
+{
+	return m_Texture;
+}
+
+//=====================
+//モデル情報取得
+//=====================
+CModel* CManager::GetModel()
+{
+	return m_Model;
+}
+
+//=====================
+//フェードの取得
+//=====================
+CFade* CManager::GetFade()
+{
+	return m_pFade;
+}
+
+//=====================
+//シーンの設定
+//=====================
+void CManager::SetMode(CScene::MODE mode)
+{
+	//終了処理
+	if (m_pScene != nullptr)
+	{
+		m_pScene->Uninit();
+		delete m_pScene;
+		m_pScene = nullptr;
+	}
+
+	//生成
+	m_pScene = CScene::Create(mode);
+	m_pScene->Init();
+	m_Camera->Init();
+}
