@@ -134,6 +134,37 @@ void CBlockEnemy::Hit()
 	if (collision)
 	{
 		m_ball->Uninit();
+		return;
+	}
+
+	//‰E‘¤‚Ì”»’è
+	collision = pCollision->RectangleRight(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->Uninit();
+		return;
+	}
+
+	//ã‚Ì”»’è
+	collision = pCollision->RectangleFront(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->Uninit();
+		return;
+	}
+
+	//‰º‚Ì”»’è
+	collision = pCollision->RectangletBack(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->Uninit();
+		return;
 	}
 }
 
