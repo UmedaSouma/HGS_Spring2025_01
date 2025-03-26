@@ -65,7 +65,15 @@ void CBullet::Update()
 	//XVˆ—
 	CObjectX::Update();
 
+	SetPosOld(GetPos());
+	SetPos(GetMove() + GetPos());
+
 	HitBlock();
+
+	if (GetPos().z > 50.0f)
+	{
+		Uninit();
+	}
 }
 
 //==========================
@@ -139,7 +147,9 @@ void CBullet::HitBlock()
 		if (GetPos().x  <= pBlockEnemy->GetPos().x + pBlockEnemy->GetVtxMax().x
 			&& GetPos().x  > pBlockEnemy->GetPos().x + pBlockEnemy->GetVtxMin().x
 			&& GetPos().y  < pBlockEnemy->GetPos().y + pBlockEnemy->GetVtxMax().y
-			&& GetPos().y  > pBlockEnemy->GetPos().y + pBlockEnemy->GetVtxMin().y)
+			&& GetPos().y  > pBlockEnemy->GetPos().y + pBlockEnemy->GetVtxMin().y
+			&& GetPos().z  < pBlockEnemy->GetPos().z + pBlockEnemy->GetVtxMax().z
+			&& GetPos().z  > pBlockEnemy->GetPos().z + pBlockEnemy->GetVtxMin().z)
 		{
 			pBlockEnemy->Uninit();
 			Uninit();

@@ -41,7 +41,7 @@ HRESULT CGameTest01::Init()
 
 	CPlayer::Create({ 0.0f,0.0f,0.0f });
 
-	CBlock::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
+	CBlockEnemy::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
 	CBall::Create({ 0.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
