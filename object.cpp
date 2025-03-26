@@ -147,6 +147,9 @@ void CObject::DrawAll(void)
 		}
 	}*/
 
+	//死亡フラグが立ってるオブジェクトを削除
+	ReleseDeath();
+
 	for (int i = 0; i < PRIORITY; i++)
 	{
 		CObject* pObj = m_pTop[i];
