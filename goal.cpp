@@ -18,7 +18,8 @@ const int CGoal::PRIORITY = 1;//描画順
 //==========================
 CGoal::CGoal(int nPriority) :
 	CObjectX(nPriority),//基底コンストラクタ
-	m_nModelIdx(0)//モデルの番号
+	m_nModelIdx(0),//モデルの番号
+	m_ball(nullptr)//ボールの情報
 {
 
 }
@@ -36,8 +37,11 @@ CGoal::~CGoal()
 //==========================
 HRESULT CGoal::Init()
 {
+	//ボールの情報を取得
+	GetBallInfo();
+
 	//サイズ設定
-	//SetSize();
+	SetSize();
 
 	//初期設定
 	CObjectX::Init();
@@ -50,6 +54,11 @@ HRESULT CGoal::Init()
 //==========================
 void  CGoal::Uninit()
 {
+	if (m_ball != nullptr)
+	{
+		m_ball = nullptr;
+	}
+
 	//終了処理
 	CObjectX::Uninit();
 
@@ -63,6 +72,8 @@ void CGoal::Update()
 {
 	//更新処理
 	CObjectX::Update();
+
+	hit();
 }
 
 //==========================
@@ -99,5 +110,54 @@ CGoal* CGoal::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	//初期化処理
 	pGoal->Init();
 
+	//タイプ設定
+	pGoal->SetType(TYPE::GOAL);
+
 	return pGoal;
+}
+
+//==========================
+//当たり判定
+//==========================
+void CGoal::hit()
+{
+	if (m_ball->GetPos().x <= GetPos().x + GetVtxMax().x
+		&& m_ball->GetPos().x > GetPos().x + GetVtxMin().x
+		&& m_ball->GetPos().y  < GetPos().y + GetVtxMax().y
+		&& m_ball->GetPos().y  > GetPos().y + GetVtxMin().y)
+	{
+		m_ball->Uninit();
+	}
+}
+
+//==========================
+//ボールの情報を取得
+//==========================
+void CGoal::GetBallInfo()
+{
+	//オブジェクトを取得
+	CObject* pObj = CObject::GetObj(nullptr, CBall::PRIORITY);
+
+	while (pObj != nullptr)
+	{
+		if (pObj == nullptr)
+		{//オブジェクトがない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//種類の取得
+		CObject::TYPE type = pObj->GetType();
+
+		if (type != CObject::TYPE::BALL)
+		{//オブジェクトが敵ではない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//ボールの情報を取得
+		m_ball = dynamic_cast<CBall*>(pObj);
+
+		break;
+	}
 }

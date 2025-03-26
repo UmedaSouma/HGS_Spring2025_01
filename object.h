@@ -20,6 +20,7 @@ public:
 		FADE,//フェード
 		BALL,//ボール
 		ENEMYBLOCK,//敵ブロック
+		GOAL,//ゴール
 		MAX,
 	}TYPE;
 
