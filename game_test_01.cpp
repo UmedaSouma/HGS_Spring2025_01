@@ -14,6 +14,8 @@
 #include "player.h"
 #include "block_enemy.h"
 
+
+CCreateBlock* CGameTest01::m_pCreteBlock = nullptr;
 //==========================
 // コンストラクタ
 //==========================
@@ -35,6 +37,12 @@ CGameTest01::~CGameTest01()
 //==========================
 HRESULT CGameTest01::Init()
 {
+	if (m_pCreteBlock == nullptr)
+	{
+		m_pCreteBlock = DBG_NEW CCreateBlock;
+		m_pCreteBlock->Init();
+	}
+
 	float UnderOrigin = 180.0f;
 	float SideOrigin = 300.0f;
 	float VarticalScale = 17.0f;
@@ -62,6 +70,12 @@ HRESULT CGameTest01::Init()
 //==========================
 void CGameTest01::Uninit()
 {
+	if (m_pCreteBlock != nullptr)
+	{
+		delete m_pCreteBlock;
+		m_pCreteBlock = nullptr;
+	}
+
 	CObject::ReleaseAll();
 }
 
@@ -70,6 +84,11 @@ void CGameTest01::Uninit()
 //==========================
 void CGameTest01::Update()
 {
+	if (m_pCreteBlock != nullptr)
+	{
+		m_pCreteBlock->Update();
+	}
+
 	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
 	{//ゲーム画面に遷移
 		CManager::GetInstance()->GetFade()->SetFade(RESULT);

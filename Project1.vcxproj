@@ -27,10 +27,13 @@
     <ClCompile Include="block_enemy.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="clear.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="create_block.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gamemanager.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="game_test_01.cpp" />
     <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
@@ -79,10 +82,13 @@
     <ClInclude Include="block_enemy.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="clear.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="create_block.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gamemanager.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="game_test_01.h" />
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />

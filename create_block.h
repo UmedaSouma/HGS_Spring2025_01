@@ -18,7 +18,9 @@ public:
 	void Uninit();	// I—¹ˆ—
 	void Update();
 private:
-
+	unsigned int m_nTimer;
+	const int MAX_V = 7;
+	const int MAX_H = 7;
 };
 
 #endif // !CREATE_BLOCK_H_

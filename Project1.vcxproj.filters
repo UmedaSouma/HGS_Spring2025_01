@@ -198,6 +198,15 @@
     <ClCompile Include="playerposui.cpp">
       <Filter>ソース ファイル\gameobject\object3D</Filter>
     </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>ソース ファイル\gameobject\object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="clear.cpp">
+      <Filter>ソース ファイル\gameobject\object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="gamemanager.cpp">
+      <Filter>ソース ファイル\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -322,6 +331,15 @@
     </ClInclude>
     <ClInclude Include="playerposui.h">
       <Filter>ヘッダー ファイル\gameobject\object3D</Filter>
+    </ClInclude>
+    <ClInclude Include="clear.h">
+      <Filter>ヘッダー ファイル\gameobject\object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>ヘッダー ファイル\gameobject\object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="gamemanager.h">
+      <Filter>ヘッダー ファイル\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
