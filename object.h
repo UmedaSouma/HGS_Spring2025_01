@@ -18,8 +18,7 @@ public:
 	{
 		NONE = 0,//無し
 		FADE,//フェード
-		ENEMY,//敵
-		PLAYER,//プレイヤー
+		BALL,//ボール
 		MAX,
 	}TYPE;
 

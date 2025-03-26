@@ -16,7 +16,10 @@ const int CBlockEnemy::PRIORITY = 1;//描画順
 //==========================
 //コンストラクタ
 //==========================
-CBlockEnemy::CBlockEnemy(int nPriority) :CBlock(nPriority), m_nModelIdx(0)
+CBlockEnemy::CBlockEnemy(int nPriority) :
+	CBlock(nPriority),
+	m_nModelIdx(0),
+	m_ball(nullptr)
 {
 
 }
@@ -34,8 +37,11 @@ CBlockEnemy::~CBlockEnemy()
 //==========================
 HRESULT CBlockEnemy::Init()
 {
+	//ボールの情報を取得
+	GetBallInfo();
+
 	//サイズ設定
-	//SetSize();
+	SetSize();
 
 	//初期設定
 	CObjectX::Init();
@@ -48,6 +54,11 @@ HRESULT CBlockEnemy::Init()
 //==========================
 void  CBlockEnemy::Uninit()
 {
+	if (m_ball != nullptr)
+	{
+		m_ball = nullptr;
+	}
+
 	//終了処理
 	CObjectX::Uninit();
 
@@ -70,13 +81,6 @@ void CBlockEnemy::Draw()
 {
 	//描画処理
 	CObjectX::Draw();
-}
-
-//===========================================================================================================
-// 当たった時の処理
-//===========================================================================================================
-void CBlockEnemy::Hit()
-{
 }
 
 //==========================
@@ -105,4 +109,52 @@ CBlockEnemy* CBlockEnemy::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale)
 	pBlockEnemy->Init();
 
 	return pBlockEnemy;
+}
+
+//===========================================================================================================
+// 当たった時の処理
+//===========================================================================================================
+void CBlockEnemy::Hit()
+{
+	//当たり判定の情報を取得
+	CCollision* pCollision = CManager::GetInstance()->GetCollision();
+
+	//左側の判定
+	bool collision = pCollision->RectangleLeft(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		GetVtxMax(), GetVtxMin(), m_ball->GetVtxMax(), m_ball->GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->Uninit();
+	}
+}
+
+//===========================================================================================================
+//ボールの情報を取得
+//===========================================================================================================
+void CBlockEnemy::GetBallInfo()
+{
+	//オブジェクトを取得
+	CObject* pObj = CObject::GetObj(nullptr, CBall::PRIORITY);
+
+	while (pObj != nullptr)
+	{
+		if (pObj == nullptr)
+		{//オブジェクトがない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//種類の取得
+		CObject::TYPE type = pObj->GetType();
+
+		if (type != CObject::TYPE::BALL)
+		{//オブジェクトが敵ではない
+			pObj = CObject::GetObj(pObj, CBall::PRIORITY);
+			continue;
+		}
+
+		//ボールの情報を取得
+		m_ball = dynamic_cast<CBall*>(pObj);
+	}
 }
