@@ -127,7 +127,38 @@ void CBlockAlly::Hit()
 
 	if (collision)
 	{
-		m_ball->SetMove({ -m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//‰E‘¤‚Ì”»’è
+	collision = pCollision->RectangleRight(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ -m_ball->GetMove().x, m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//ã‚Ì”»’è
+	collision = pCollision->RectangleFront(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
+	}
+
+	//‰º‚Ì”»’è
+	collision = pCollision->RectangletBack(m_ball->GetPosOld(), m_ball->GetPos(), GetPos(),
+		m_ball->GetVtxMax(), m_ball->GetVtxMin(), GetVtxMax(), GetVtxMin());
+
+	if (collision)
+	{
+		m_ball->SetMove({ m_ball->GetMove().x, -m_ball->GetMove().y, m_ball->GetMove().z });
+		return;
 	}
 }
 
