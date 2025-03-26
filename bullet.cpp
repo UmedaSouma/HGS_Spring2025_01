@@ -104,7 +104,7 @@ CBullet* CBullet::Create(D3DXVECTOR3 pos, D3DXVECTOR3 scale, D3DXVECTOR3 move)
 
 	//ƒ‚ƒfƒ‹‚Ì¶¬
 	CModel* pModel = CManager::GetInstance()->GetModel();
-	pBullet->m_nModelIdx = pModel->Regist("data\\MODEL\\soil.x");
+	pBullet->m_nModelIdx = pModel->Regist("data\\MODEL\\ball.x");
 	pBullet->BindModel(pModel->GetMeshAdress(pBullet->m_nModelIdx),
 		pModel->GetBuffMatAdress(pBullet->m_nModelIdx),
 		pModel->GetNumMatAdress(pBullet->m_nModelIdx),

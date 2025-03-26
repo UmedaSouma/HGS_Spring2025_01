@@ -8,6 +8,7 @@
 #define _PLAYER_H_
 
 #include "objectgame.h"
+#include "playerposui.h"
 
 //クラスの定義
 class CPlayer :public CObjectgame
@@ -25,5 +26,6 @@ public:
 	void OpeBullet();
 	static CPlayer* Create(D3DXVECTOR3 pos);//オブジェクト生成
 private:
+	static CPlayerposUI* PUI;
 };
 #endif

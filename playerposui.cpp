@@ -81,6 +81,8 @@ CPlayerposUI* CPlayerposUI::Create(D3DXVECTOR3 pos, D3DXVECTOR3 size)
 	//‘å‚«‚³‚ÌÝ’è
 	pPlayerposUI->SetSize(size);
 
+	pPlayerposUI->SetRot({ D3DX_PI,0.0f,0.0f });
+
 	//‰Šú‰»ˆ—
 	pPlayerposUI->Init();
 
