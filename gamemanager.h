@@ -21,10 +21,13 @@ public:
 	void SetGame();//クリア判定を設定
 	bool GetEnd();//終了判定を取得
 	void SetEnd();//終了判定を設定
+	bool GetStart();//開始判定を取得
+	void SetStart();//開始判定を設定
 	void reset();//情報リセット
 private:
 	bool m_Game;//クリア判定
 	bool m_End;//終了判定
+	bool m_start;//開始判定
 };
 
 #endif 

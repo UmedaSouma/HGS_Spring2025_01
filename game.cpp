@@ -70,6 +70,8 @@ void CGame::Uninit()
 //==========================
 void CGame::Update()
 {
+	Start();
+
 	if (!CManager::GetInstance()->GetGameManager()->GetEnd())
 	{
 		return;
@@ -96,4 +98,20 @@ void CGame::Update()
 void CGame::Draw()
 {
 
+}
+
+//==========================
+// 描画処理
+//==========================
+void CGame::Start()
+{
+	if (CManager::GetInstance()->GetGameManager()->GetStart())
+	{//開始している
+		return;
+	}
+
+	if (CManager::GetInstance()->GetKeyboard()->GetTrigger(DIK_RETURN))
+	{//エンターキーがおされた
+		CManager::GetInstance()->GetGameManager()->SetStart();
+	}
 }

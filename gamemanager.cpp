@@ -13,7 +13,8 @@
 //==========================
 CGameManager::CGameManager() :
 	m_End(false),
-	m_Game(false)
+	m_Game(false),
+	m_start(false)
 {
 
 }
@@ -59,10 +60,27 @@ void CGameManager::SetEnd()
 }
 
 //==========================
+//開始判定を取得
+//==========================
+bool CGameManager::GetStart()
+{
+	return m_start;
+}
+
+//==========================
+//開始判定を設定
+//==========================
+void CGameManager::SetStart()
+{
+	m_start = true;
+}
+
+//==========================
 //情報リセット
 //==========================
 void CGameManager::reset()
 {
 	m_End = false;
 	m_Game = false;
+	m_start = false;
 }

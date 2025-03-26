@@ -64,6 +64,11 @@ void  CBall::Uninit()
 //==========================
 void CBall::Update()
 {
+	if (!CManager::GetInstance()->GetGameManager()->GetStart())
+	{//ゲームが始まっていない
+		return;
+	}
+
 	//更新処理
 	CObjectX::Update();
 
