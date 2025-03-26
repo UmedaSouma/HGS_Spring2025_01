@@ -21,6 +21,7 @@ private:
 	unsigned int m_nTimer;
 	const int MAX_V = 7;
 	const int MAX_H = 7;
+	const float SCALE = 1.8f;
 };
 
 #endif // !CREATE_BLOCK_H_

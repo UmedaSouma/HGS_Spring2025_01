@@ -37,11 +37,7 @@ CGameTest01::~CGameTest01()
 //==========================
 HRESULT CGameTest01::Init()
 {
-	if (m_pCreteBlock == nullptr)
-	{
-		m_pCreteBlock = DBG_NEW CCreateBlock;
-		m_pCreteBlock->Init();
-	}
+
 
 	float UnderOrigin = 180.0f;
 	float SideOrigin = 300.0f;
@@ -52,6 +48,12 @@ HRESULT CGameTest01::Init()
 	CBlockEnemy::Create({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f });
 
 	CBall::Create({ 0.0f,-50.0f,0.0f }, { 1.0f,1.0f,1.0f });
+
+	if (m_pCreteBlock == nullptr)
+	{
+		m_pCreteBlock = DBG_NEW CCreateBlock;
+		m_pCreteBlock->Init();
+	}
 
 	{// ï«îzíu
 		CWall::Create({ -SideOrigin,-UnderOrigin,0.0f }, { 1.0f,VarticalScale,1.0f });	// ç∂ï«

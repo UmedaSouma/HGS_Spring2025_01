@@ -34,8 +34,8 @@ void CCreateBlock::Init()
 		for (int t = 0; t < MAX_H; t++)
 		{
 			// int r = rand() % MAX_V + 1;
-			D3DXVECTOR3 pos = { 0.0f + (i * 45),-155.0f+(t * 45),0.0f };
-			D3DXVECTOR3 scale = { 2.0f,2.0f,1.0f };
+			D3DXVECTOR3 pos = { 0.0f + (i * 45),-140.0f+(t * 45),0.0f };
+			D3DXVECTOR3 scale = { SCALE,SCALE,1.0f };
 			CBlockEnemy::Create(pos, scale);
 		}
 	}
@@ -55,12 +55,18 @@ void CCreateBlock::Update()
 {
 
 
-	if (m_nTimer % 600 == 0)
+	if (m_nTimer % 600 == 0 && m_nTimer != 0)
 	{
 		for (int i = 0; i < MAX_V; i++)
 		{
-			D3DXVECTOR3 pos = { 100.0f,-155.0f + (i * 45),0.0f };
-			D3DXVECTOR3 scale = { 2.0f,2.0f,1.0f };
+			D3DXVECTOR3 pos = { 315.0f,-140.0f + (i * 45),0.0f };
+
+			if (i == 6)
+			{
+				pos.x -= 40;
+			}
+
+			D3DXVECTOR3 scale = { SCALE,SCALE,1.0f };
 			CBlockEnemy::Create(pos, scale);
 		}
 
