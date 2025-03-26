@@ -189,6 +189,9 @@
     <ClCompile Include="create_block.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>ソース ファイル\gameobject\objectX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard.h">
@@ -304,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="create_block.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>ヘッダー ファイル\gameobject\objectX</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
